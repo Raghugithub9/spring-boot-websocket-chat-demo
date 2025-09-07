@@ -20,7 +20,7 @@ pipeline {
 
                 // Run Maven on a Unix agent.
                 sh "mvn -Dmaven.test.failure.ignore=true clean package"
-
+     sh "sudo systemctl start docker"
                 // To run Maven on a Windows agent, use
                 // bat "mvn -Dmaven.test.failure.ignore=true clean package"
             }
@@ -38,8 +38,8 @@ pipeline {
         stage('Docker Image Build'){
             
             steps{
-                sh "systemctl start docker"
-                sh "docker rmi chatapplicationimage:$BUILD_NUMBER"
+               
+                //sh "docker rmi chatapplicationimage:$BUILD_NUMBER"
                 sh "docker build -t chatapplicationimage:$BUILD_NUMBER ."
             }
         }
