@@ -38,7 +38,7 @@ pipeline {
         stage('Docker Image Build'){
             
             steps{
-                
+                sh "sudo systemctl start docker"
                 sh "docker rmi chatapplicationimage:$BUILD_NUMBER"
                 sh "docker build -t chatapplicationimage:$BUILD_NUMBER ."
             }
